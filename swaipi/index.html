@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="starWars">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name = "format-detection" content = "telephone=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>:: TCG-BGRS ::</title>
+        <link href="css/fontawesome.css" rel="stylesheet"><!-- fontawesome css -->
+        <link href="css/bootstrap.css" rel="stylesheet"><!-- bootstrap css -->
+
+        <link href="css/bootstrap-select.css" rel="stylesheet"><!-- bootstrap-select css -->
+        <link href="css/docs.css" rel="stylesheet"><!-- docs css -->
+        <link href="css/css3.css" rel="stylesheet"><!-- css3 css -->
+
+    </head>
+    <style type="text/css">
+
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            width: 200px;
+            z-index: 100;
+        }
+        .overlap {
+            background-color: #000;
+            opacity: 0.5;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 10;
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+        }
+    </style>
+    <body>
+        <div id="wrapper" ng-controller="starwarsController">
+
+
+            <!-- Content Start -->
+            <div class="overlap" ng-show="showLoader" ></div>
+            <div class="loader" ng-show="showLoader" ><img src="images/load-more.gif"></div>
+            <div id="content">
+
+                <!-- =========================================
+                About Section
+                ========================================== -->
+
+                <section class="about-section" ng-init="getInitList();">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select class="charachter form-control" ng-model="ePeople" title="Charachter" ng-change="getFilmList()">
+                                        <option value="">Please Select Charachter</option>
+                                        <option value="{{ key}}" ng-repeat="(key,pp ) in peoples">{{ pp.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="films" class="form-group">
+                                    <select class="charachter form-control" ng-model="eFilm" title="Charachter" ng-change="getFilmDetail()">
+                                        <option value="">Please Select List Of movies</option>
+                                        <option value="{{ ff.url}}" ng-repeat="ff in films">{{ ff.title}}</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name / year last Movie: </label><br>
+                                    <span class="mname" style="border-bottom: 1px solid #000;" ng-if="singleFilm.title">{{ singleFilm.title}}/{{ singleFilm.release_date}} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/xyz-angular-swapi.min.js"></script>
+        <script src="js/script.js"></script>
+
+    </body>
+</html>
